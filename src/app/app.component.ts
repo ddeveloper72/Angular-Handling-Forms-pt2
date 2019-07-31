@@ -26,6 +26,15 @@ export class AppComponent implements OnInit {
     //     (value) => console.log(value)
     //   );
     this.signupForm.statusChanges.subscribe(status => console.log(status));
+
+    this.signupForm.setValue({
+      'userData': {
+        'username': 'Duncan',
+        'email': 'duncan@test.com'
+      },
+      'gender': 'male',
+      'hobbies': []
+    });
   }
   onSubmit() {
     console.log(this.signupForm);
