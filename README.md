@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2
 
+## Test
+
+Try using the special names Anna or Chris which are set programmatically as invalid names to verify the operation of the reactive form.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
