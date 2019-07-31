@@ -7,3 +7,9 @@ input.ng-invalid.ng-touched {
   background-color: #ff00002e;
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.54);
 }
+
+.list-group-item {
+  border: 1px solid rgba(0, 255, 158, 0.67);
+  background-color: #00ff7b29;
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 254, 0.12);
+}
