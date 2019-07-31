@@ -55,6 +55,17 @@
           <hr>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>
+      <hr>
+      <div class="row" *ngIf="submitted">
+        <div class="col-sm-12">
+          <h3>Your Data</h3>
+          <ul class="list-group">
+            <li class="list-group-item mb-2">Username: <strong>{{ userData.username }}</strong></li>            
+            <li class="list-group-item mb-2">Mail: <strong>{{ userData.email }}</strong></li>            
+            <li class="list-group-item">Gender: <strong>{{ genders.values }}</strong></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
