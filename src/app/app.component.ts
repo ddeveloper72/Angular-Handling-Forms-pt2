@@ -9,14 +9,28 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   genders = ['male', 'female'];
+
   signupForm: FormGroup;
   forbiddenUsernames = ['Chris', 'Anna'];
+  submitted = false;
+  userData = {
+    username: '',
+    email: '',
+    gender: ''
+  };
 
   ngOnInit() {
     this.signupForm = new FormGroup({
       userData: new FormGroup({
-        username: new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
-        email: new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails)
+        username: new FormControl(null, [
+          Validators.required,
+          this.forbiddenNames.bind(this)
+        ]),
+        email: new FormControl(
+          null,
+          [Validators.required, Validators.email],
+          this.forbiddenEmails
+        )
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([])
@@ -28,12 +42,12 @@ export class AppComponent implements OnInit {
     this.signupForm.statusChanges.subscribe(status => console.log(status));
 
     this.signupForm.setValue({
-      'userData': {
-        'username': 'Duncan',
-        'email': 'duncan@test.com'
+      userData: {
+        username: 'Developer',
+        email: 'developer@test.ie'
       },
-      'gender': 'male',
-      'hobbies': []
+      gender: 'male',
+      hobbies: []
     });
     this.signupForm.patchValue({
       userData: {
@@ -43,6 +57,13 @@ export class AppComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.signupForm);
+    console.log(this.signupForm.value.userData.username);
+    console.log(this.signupForm.value.gender);
+    this.submitted = true;
+    this.userData.username = this.signupForm.value.userData.username;
+    this.userData.email = this.signupForm.value.userData.email;
+    this.genders.values = this.signupForm.value.gender;
+
     this.signupForm.reset();
   }
 
@@ -54,9 +75,9 @@ export class AppComponent implements OnInit {
     const control = new FormControl(null, Validators.required);
     (<FormArray>this.signupForm.get('hobbies')).push(control);
   }
-  forbiddenNames(control: FormControl): {[s: string]: boolean} {
+  forbiddenNames(control: FormControl): { [s: string]: boolean } {
     if (this.forbiddenUsernames.indexOf(control.value) !== -1) {
-      return{'nameIsForbidden': true};
+      return { nameIsForbidden: true };
     }
     return null;
   }
@@ -65,7 +86,7 @@ export class AppComponent implements OnInit {
     const promise = new Promise<any>((resolve, reject) => {
       setTimeout(() => {
         if (control.value === 'test@test.com') {
-          resolve({'emailIsForbidden': true});
+          resolve({ emailIsForbidden: true });
         } else {
           resolve(null);
         }
